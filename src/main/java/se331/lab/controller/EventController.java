@@ -1,6 +1,5 @@
-package se331.lab.rest.controller;
+package se331.lab.controller;
 
-import org.apache.coyote.Response;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
-import se331.lab.rest.entity.Event;
+import se331.lab.entity.Event;
 
 import jakarta.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -114,6 +113,18 @@ public class EventController {
                 .time("11:00")
                 .petAllowed(false)
                 .organizer("Brody Kill")
+                .build());
+
+        eventsList.add(Event.builder()
+                .id(1004L)
+                .category("education")
+                .title("Smoking Weed !!!")
+                .description("Learn how to smoke weed like an expert.")
+                .location("sansainoi, CNX")
+                .date("July 03, 2025")
+                .time("25:00")
+                .petAllowed(false)
+                .organizer("Cannabis Master")
                 .build());
     }
 
