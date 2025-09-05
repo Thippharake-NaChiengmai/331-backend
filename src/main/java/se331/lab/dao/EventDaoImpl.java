@@ -38,30 +38,7 @@ public class EventDaoImpl implements EventDao {
                 .petAllowed(true)
                 .organizer(Organizer.builder().id(2L).organization("Flora City Gardens").address("456 Garden Ave, Flora City").build())
                 .build());
-        eventList.add(Event.builder()
-                .id(123L)
-                .category("animal welfare")
-                .title("Cat Adoption Day")
-                .description("Find your new feline friend at this event.")
-                .location("Meow Town")
-                .date("January 28, 2022")
-                .time("12:00")
-                .petAllowed(true)
-                .organizer(Organizer.builder().id(1L).organization("Kat Laydee Foundation").address("123 Cat Street, Meow Town").build())
-                .build());
-
-        eventList.add(Event.builder()
-                .id(456L)
-                .category("food")
-                .title("Community Gardening")
-                .description("Join us as we tend to the community edible plants.")
-                .location("Flora City")
-                .date("March 14, 2022")
-                .time("10:00")
-                .petAllowed(true)
-                .organizer(Organizer.builder().id(2L).organization("Flora City Gardens").address("456 Garden Ave, Flora City").build())
-                .build());
-
+        
         eventList.add(Event.builder()
                 .id(789L)
                 .category("sustainability")
