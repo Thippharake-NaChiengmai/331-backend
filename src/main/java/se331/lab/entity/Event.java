@@ -20,7 +20,7 @@ public class Event {
     String date;
     String time;
     Boolean petAllowed;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "organizer_id")
     Organizer organizer;
 }
