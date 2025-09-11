@@ -1,7 +1,6 @@
 package se331.lab.dao;
 
 import se331.lab.entity.Organizer;
-import java.util.List;
 import org.springframework.data.domain.Page;
 
 public interface OrganizerDao {
