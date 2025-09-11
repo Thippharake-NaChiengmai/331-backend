@@ -21,6 +21,7 @@ public class Event {
     String time;
     Boolean petAllowed;
     @ManyToOne
+    @JoinColumn(name = "organizer_id")
     Organizer organizer;
 }
 
