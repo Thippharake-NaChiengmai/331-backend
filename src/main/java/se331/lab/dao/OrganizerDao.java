@@ -2,9 +2,11 @@ package se331.lab.dao;
 
 import se331.lab.entity.Organizer;
 import java.util.List;
+import org.springframework.data.domain.Page;
 
 public interface OrganizerDao {
     Integer getOrganizerSize();
-    List<Organizer> getOrganizers(Integer pageSize, Integer page);
+    Page<Organizer> getOrganizers(Integer pageSize, Integer page);
     Organizer getOrganizer(Integer id);
+    Organizer save(Organizer organizer);
 }

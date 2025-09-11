@@ -1,10 +1,11 @@
 package se331.lab.service;
 
 import se331.lab.entity.Organizer;
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 public interface OrganizerService {
     Integer getOrganizerSize();
-    List<Organizer> getOrganizers(Integer pageSize, Integer page);
+    Page<Organizer> getOrganizers(Integer pageSize, Integer page);
     Organizer getOrganizer(Integer id);
+    Organizer save(Organizer organizer);
 }
