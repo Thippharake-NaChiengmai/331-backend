@@ -9,8 +9,6 @@ import org.springframework.stereotype.Repository;
 import se331.lab.entity.Organizer;
 import se331.lab.repository.OrganizerRepository;
 
-import java.util.List;
-
 @Repository
 @RequiredArgsConstructor
 @Profile("db-org")
