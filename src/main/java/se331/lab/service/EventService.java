@@ -8,4 +8,5 @@ public interface EventService {
     Integer getEventSize();
     Page<Event> getEvents(Integer pageSize, Integer page);
     Event getEvent(Integer id);
+    Event save(Event event);
 }
