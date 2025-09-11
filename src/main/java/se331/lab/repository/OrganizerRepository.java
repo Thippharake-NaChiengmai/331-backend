@@ -2,9 +2,12 @@ package se331.lab.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import se331.lab.entity.Event;
+import se331.lab.entity.Organizer;
 
 import java.util.List;
 
-public interface EventRepository extends JpaRepository<Event,Long> {
-    List<Event> findAll();
+public interface OrganizerRepository extends JpaRepository<Organizer, Long> {
+    List<Organizer> findAll();
 }
+
+
