@@ -18,76 +18,54 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
 
         eventRepository.save(Event.builder()
-
                 .category("Academic")
-
                 .title("Midterm Exam")
-
                 .description("A time for taking the exam")
-
                 .location("CAMT Building")
-
                 .date("3rd Sept")
-
                 .time("3.00-4.00 pm.")
-
                 .petAllowed(false)
-
                 .organizer(Organizer.builder().organization("CAMT").build()).build());
 
         eventRepository.save(Event.builder()
-
                 .category("Academic")
-
                 .title("Commencement Day")
-
                 .description("A time for celebration")
-
                 .location("CMU Convention hall")
-
                 .date("21th Jan")
-
                 .time("8.00am-4.00 pm.")
-
                 .petAllowed(false)
-
                 .organizer(Organizer.builder().organization("CMU").build()).build());
 
         eventRepository.save(Event.builder()
-
                 .category("Cultural")
-
                 .title("Loy Krathong")
-
                 .description("A time for Krathong")
-
                 .location("Ping River")
-
                 .date("21th Nov")
-
                 .time("8.00-10.00 pm.")
-
                 .petAllowed(false)
-
                 .organizer(Organizer.builder().organization("Chiang Mai").build()).build());
 
         eventRepository.save(Event.builder()
-
                 .category("Cultural")
-
                 .title("Songkran")
-
                 .description("Let's Play Water")
-
                 .location("Chiang Mai Moat")
-
                 .date("13th April")
-
                 .time("10.00am - 6.00 pm.")
-
                 .petAllowed(true)
-
                 .organizer(Organizer.builder().organization("Chiang Mai Municipality").build()).build());
+
+        eventRepository.save(Event.builder()
+                .category("Sleep")
+                .title("Sleeping")
+                .description("Sleeping in SE-331 Class")
+                .location("ILC-C208–C209")
+                .date("12th September")
+                .time("12.00am - 00.00 pm.")
+                .petAllowed(true)
+                .organizer(Organizer.builder().organization("CAMT").build()).build());
 
     }
 }

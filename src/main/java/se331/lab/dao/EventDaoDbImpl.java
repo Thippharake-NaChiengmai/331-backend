@@ -14,26 +14,25 @@ import java.util.List;
 @RequiredArgsConstructor
 @Profile("db")
 public class EventDaoDbImpl implements EventDao{
-
     final EventRepository eventRepository;
 
     @Override
     public Integer getEventSize() {
-
         return Math.toIntExact(eventRepository.count());
-
     }
 
     @Override
     public Page<Event> getEvents(Integer pageSize, Integer page) {
-
         return eventRepository.findAll(PageRequest.of(page -1, pageSize));
     }
 
     @Override
     public Event getEvent(Integer id) {
-
         return eventRepository.findById(Long.valueOf(id)).orElse(null);
+    }
 
+    @Override
+    public Event save(Event event) {
+        return eventRepository.save(event);
     }
 }
