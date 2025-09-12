@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-@Profile("manual-org")
+@Profile("manual")
 public class OrganizerDaoImpl implements OrganizerDao {
     List<Organizer> organizerList;
 
