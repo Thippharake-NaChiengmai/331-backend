@@ -11,7 +11,7 @@ import se331.lab.repository.OrganizerRepository;
 
 @Repository
 @RequiredArgsConstructor
-@Profile("db-org")
+@Profile("db")
 public class OrganizerDaoDbImpl implements OrganizerDao {
     final OrganizerRepository organizerRepository;
 
