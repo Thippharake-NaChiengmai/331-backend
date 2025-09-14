@@ -30,20 +30,21 @@ public class EventDaoImpl implements EventDao {
                 .date("January 28, 2022")
                 .time("12:00")
                 .petAllowed(true)
-                .organizer(Organizer.builder().id(1L).organization("Kat Laydee Foundation").address("123 Cat Street, Meow Town").build())
+                .organizer("Kat Laydee")
                 .build());
+
         eventList.add(Event.builder()
                 .id(456L)
                 .category("food")
                 .title("Community Gardening")
-                .description("Join us as we tend to the  community edible.")
+                .description("Join us as we tend to the community edible plants.")
                 .location("Flora City")
                 .date("March 14, 2022")
                 .time("10:00")
                 .petAllowed(true)
-                .organizer(Organizer.builder().id(2L).organization("Flora City Gardens").address("456 Garden Ave, Flora City").build())
+                .organizer("Fern Pollin")
                 .build());
-        
+
         eventList.add(Event.builder()
                 .id(789L)
                 .category("sustainability")
@@ -53,7 +54,7 @@ public class EventDaoImpl implements EventDao {
                 .date("July 22, 2022")
                 .time("11:00")
                 .petAllowed(false)
-                .organizer(Organizer.builder().id(3L).organization("Ocean Conservation Group").address("789 Beach Blvd, Playa Del Carmen").build())
+                .organizer("Carey Wales")
                 .build());
 
         eventList.add(Event.builder()
@@ -65,7 +66,7 @@ public class EventDaoImpl implements EventDao {
                 .date("August 28, 2022")
                 .time("12:00")
                 .petAllowed(true)
-                .organizer(Organizer.builder().id(4L).organization("Woof Town Animal Shelter").address("101 Dog Park Lane, Woof Town").build())
+                .organizer("Dawg Dahd")
                 .build());
 
         eventList.add(Event.builder()
@@ -77,7 +78,7 @@ public class EventDaoImpl implements EventDao {
                 .date("September 14, 2022")
                 .time("3:00")
                 .petAllowed(true)
-                .organizer(Organizer.builder().id(5L).organization("Tin City Food Bank").address("202 Charity Rd, Tin City").build())
+                .organizer("Kahn Opiner")
                 .build());
 
         eventList.add(Event.builder()
@@ -89,7 +90,7 @@ public class EventDaoImpl implements EventDao {
                 .date("July 22, 2022")
                 .time("11:00")
                 .petAllowed(false)
-                .organizer(Organizer.builder().id(6L).organization("Highway Clean Initiative").address("303 Highway 50, Clean City").build())
+                .organizer("Brody Kill")
                 .build());
 
         eventList.add(Event.builder()
@@ -101,7 +102,7 @@ public class EventDaoImpl implements EventDao {
                 .date("July 03, 2025")
                 .time("25:00")
                 .petAllowed(false)
-                .organizer(Organizer.builder().id(7L).organization("Cannabis Education Center").address("404 Green Street, sansainoi, CNX").build())
+                .organizer("Cannabis Education Center")
                 .build());
     }
 
@@ -120,7 +121,7 @@ public class EventDaoImpl implements EventDao {
     }
 
     @Override
-    public Event getEvent(Integer id) {
+    public Event getEvent(Long id) {
         return eventList.stream().filter(event -> 
                 event.getId().equals(Long.valueOf(id))).findFirst().orElse(null);
     }

@@ -71,7 +71,7 @@ public class OrganizerDaoImpl implements OrganizerDao {
     }
 
     @Override
-    public Organizer getOrganizer(Integer id) {
+    public Organizer getOrganizer(Long id) {
         return organizerList.stream()
                 .filter(organizer -> organizer.getId().equals(Long.valueOf(id)))
                 .findFirst()

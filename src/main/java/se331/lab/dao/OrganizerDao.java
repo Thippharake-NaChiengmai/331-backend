@@ -6,6 +6,6 @@ import org.springframework.data.domain.Page;
 public interface OrganizerDao {
     Integer getOrganizerSize();
     Page<Organizer> getOrganizers(Integer pageSize, Integer page);
-    Organizer getOrganizer(Integer id);
+    Organizer getOrganizer(Long id);
     Organizer save(Organizer organizer);
 }
