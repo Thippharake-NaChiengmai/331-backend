@@ -26,9 +26,8 @@ public class OrganizerDaoDbImpl implements OrganizerDao {
     }
 
     @Override
-    public Organizer getOrganizer(Integer id) {
-        if (id == null) return null;
-        return organizerRepository.findById(Long.valueOf(id)).orElse(null);
+    public Organizer getOrganizer(Long id) {
+        return organizerRepository.findById(id).orElse(null);
     }
 
     @Override

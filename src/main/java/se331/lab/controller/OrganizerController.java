@@ -26,7 +26,7 @@ public class OrganizerController {
     }
 
     @GetMapping("organizers/{id}")
-    public ResponseEntity<?> getOrganizer(@PathVariable("id") Integer id) {
+    public ResponseEntity<?> getOrganizer(@PathVariable("id") Long id) {
         Organizer output = organizerService.getOrganizer(id);
         if (output != null) {
             return ResponseEntity.ok(output);
@@ -37,8 +37,8 @@ public class OrganizerController {
     }
 
     @PostMapping("/organizers")
-    public ResponseEntity<Organizer> createOrganizer(@RequestBody Organizer organizer) {
-        Organizer saved = organizerService.save(organizer);
-        return new ResponseEntity<>(saved, HttpStatus.CREATED);
+    public ResponseEntity<?> addOrganizer(@RequestBody Organizer organizer) {
+        Organizer output = organizerService.save(organizer);
+        return ResponseEntity.ok(output);
     }
 }

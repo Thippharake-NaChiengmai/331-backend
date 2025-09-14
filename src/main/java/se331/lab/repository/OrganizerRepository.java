@@ -1,7 +1,6 @@
 package se331.lab.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import se331.lab.entity.Event;
 import se331.lab.entity.Organizer;
 
 import java.util.List;
