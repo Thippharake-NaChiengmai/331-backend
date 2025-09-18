@@ -123,6 +123,28 @@ public class EventDaoImpl implements EventDao {
     }
 
     @Override
+    public Page<Event> getEventsAnd(String title, String description, Pageable pageable) {
+        List<Event> filtered = eventList;
+        if (title != null && !title.isEmpty()) {
+            filtered = filtered.stream()
+                    .filter(e -> e.getTitle() != null && e.getTitle().contains(title))
+                    .toList();
+        }
+        if (description != null && !description.isEmpty()) {
+            filtered = filtered.stream()
+                    .filter(e -> e.getDescription() != null && e.getDescription().contains(description))
+                    .toList();
+        }
+
+        int pageSize = pageable.getPageSize();
+        int pageNumber = pageable.getPageNumber();
+        int firstIndex = pageNumber * pageSize;
+        int lastIndex = Math.min(firstIndex + pageSize, filtered.size());
+        List<Event> content = firstIndex >= filtered.size() ? List.of() : filtered.subList(firstIndex, lastIndex);
+        return new PageImpl<>(content, pageable, filtered.size());
+    }
+
+    @Override
     public Event getEvent(Long id) {
         return eventList.stream().filter(event -> 
                 event.getId().equals(Long.valueOf(id))).findFirst().orElse(null);

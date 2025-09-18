@@ -9,4 +9,5 @@ public interface EventService {
     Event getEvent(Long id);
     Event save(Event event);
     Page<Event> getEvents(String title, Pageable page);
+    Page<Event> getEventsAnd(String title, String description, Pageable page);
 }
