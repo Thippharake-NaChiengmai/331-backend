@@ -37,9 +37,4 @@ public class EventServiceImpl implements EventService {
     public Page<Event> getEvents (String title, Pageable pageable) {
         return eventDao.getEvents(title, pageable);
     }
-
-    @Override
-    public Page<Event> getEventsAnd(String title, String description, Pageable pageable) {
-        return eventDao.getEventsAnd(title, description, pageable);
-    }
 }
