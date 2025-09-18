@@ -19,14 +19,20 @@ public class EventController {
     public ResponseEntity<?> getEventLists(@RequestParam(value = "_limit",
             required = false,defaultValue = "10") Integer perPage
             , @RequestParam(value = "_page", required = false,defaultValue = "1") Integer page,
-              @RequestParam(value = "title", required = false) String title) {
+              @RequestParam(value = "title", required = false) String title,
+              @RequestParam(value = "description", required = false) String description) {
         perPage = perPage == null ? 3 : perPage;
         page = page == null ? 1 : page;
         Page<Event> pageOutput;
-        if (title == null) {
+        if (title == null && description == null) {
             pageOutput = eventService.getEvents(perPage, page);
-        }else{
-            pageOutput = eventService.getEvents(title,PageRequest.of(page-1,perPage));
+        } else if (title != null && description != null) {
+            pageOutput = eventService.getEventsAnd(title, description, PageRequest.of(page-1, perPage));
+        } else if (title != null) {
+            pageOutput = eventService.getEvents(title, PageRequest.of(page-1, perPage));
+        } else {
+            // Only description provided: use AND with empty title to effectively filter by description only
+            pageOutput = eventService.getEventsAnd("", description, PageRequest.of(page-1, perPage));
         }
         HttpHeaders responseHeader = new HttpHeaders();
         responseHeader.set("x-total-count", String.valueOf(pageOutput.getTotalElements()));
