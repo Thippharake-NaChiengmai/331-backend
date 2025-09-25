@@ -20,9 +20,15 @@ public class BucketController {
             throws IOException, ServletException {
         // ใช้ bucket name ของ Firebase
         String bucketName = "component-based-lab.firebasestorage.app";
-
         String imageUrl = cloudStorageHelper.uploadFile(file, bucketName);
 
         return ResponseEntity.ok(imageUrl);
+    }
+
+    @PostMapping ("/uploadImage")
+    public ResponseEntity <? > uploadFileComponent (@RequestPart (value = "image")
+    MultipartFile file) throws IOException, ServletException {
+
+        return ResponseEntity. ok(this. cloudStorageHelper.getStorageFileDto (file, "component-based-lab.firebasestorage.app") ) ;
     }
 }

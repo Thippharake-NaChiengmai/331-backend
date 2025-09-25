@@ -3,6 +3,8 @@ package se331.lab.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Data
 @Builder
 @Entity
@@ -21,5 +23,7 @@ public class Event {
     String time;
     Boolean petAllowed;
     String organizer;
+    @ElementCollection
+    List<String> images;
 }
 
