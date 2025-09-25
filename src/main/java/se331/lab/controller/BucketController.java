@@ -19,7 +19,7 @@ public class BucketController {
     public ResponseEntity<?> uploadFile(@RequestPart(value = "file") MultipartFile file)
             throws IOException, ServletException {
         // ใช้ bucket name ของ Firebase
-        String bucketName = "component-based-lab.appspot.com";
+        String bucketName = "component-based-lab.firebasestorage.app";
 
         String imageUrl = cloudStorageHelper.uploadFile(file, bucketName);
 
