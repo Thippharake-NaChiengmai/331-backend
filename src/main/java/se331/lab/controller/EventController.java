@@ -12,6 +12,8 @@ import se331.lab.entity.Event;
 import se331.lab.service.EventService;
 import se331.lab.util.LabMapper;
 
+import static se331.lab.util.LabMapper.*;
+
 @RestController
 @RequiredArgsConstructor
 public class EventController {
@@ -32,9 +34,9 @@ public class EventController {
         HttpHeaders responseHeader = new HttpHeaders();
         responseHeader.set("x-total-count",
                 String.valueOf(pageOutput.getTotalElements()));
-        return LabMapper.INSTANCE.getEventDTO(pageOutput.getContent(), responseHeader, HttpStatus.OK);
+        return new ResponseEntity<>(LabMapper.INSTANCE.getEventDTO(pageOutput.getContent()),
+                responseHeader, HttpStatus.OK);
     }
-
     @GetMapping("events/{id}")
     public ResponseEntity<?> getEvent(@PathVariable("id") Long id) {
         Event output = eventService.getEvent(id);
