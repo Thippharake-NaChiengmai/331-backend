@@ -3,6 +3,7 @@ package se331.lab.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -16,8 +17,9 @@ public class Organizer {
     @EqualsAndHashCode.Exclude
     Long id;
     String name;
-    @ManyToMany(mappedBy = "organizer")
-    List<Event> ownEvents;
+    @OneToMany(mappedBy = "organizer")
+    @Builder.Default
+    List<Event> ownEvents  = new ArrayList<>();
 //    @ElementCollection
 //    List<String> images;
 }

@@ -16,45 +16,45 @@ import java.util.List;
 public class OrganizerDaoImpl implements OrganizerDao {
     List<Organizer> organizerList;
 
-    @PostConstruct
-    public void init() {
-        organizerList = new ArrayList<>();
-        organizerList.add(Organizer.builder()
-                .id(1L)
-                .organization("Kat Laydee Foundation")
-                .address("123 Cat Street, Meow Town")
-                .build());
-        organizerList.add(Organizer.builder()
-                .id(2L)
-                .organization("Flora City Gardens")
-                .address("456 Garden Ave, Flora City")
-                .build());
-        organizerList.add(Organizer.builder()
-                .id(3L)
-                .organization("Ocean Conservation Group")
-                .address("789 Beach Blvd, Playa Del Carmen")
-                .build());
-        organizerList.add(Organizer.builder()
-                .id(4L)
-                .organization("Woof Town Animal Shelter")
-                .address("101 Dog Park Lane, Woof Town")
-                .build());
-        organizerList.add(Organizer.builder()
-                .id(5L)
-                .organization("Tin City Food Bank")
-                .address("202 Charity Rd, Tin City")
-                .build());
-        organizerList.add(Organizer.builder()
-                .id(6L)
-                .organization("Highway Clean Initiative")
-                .address("303 Highway 50, Clean City")
-                .build());
-        organizerList.add(Organizer.builder()
-                .id(7L)
-                .organization("Cannabis Education Center")
-                .address("404 Green Street, sansainoi, CNX")
-                .build());
-    }
+//    @PostConstruct
+//    public void init() {
+//        organizerList = new ArrayList<>();
+//        organizerList.add(Organizer.builder()
+//                .id(1L)
+//                .organization("Kat Laydee Foundation")
+//                .address("123 Cat Street, Meow Town")
+//                .build());
+//        organizerList.add(Organizer.builder()
+//                .id(2L)
+//                .organization("Flora City Gardens")
+//                .address("456 Garden Ave, Flora City")
+//                .build());
+//        organizerList.add(Organizer.builder()
+//                .id(3L)
+//                .organization("Ocean Conservation Group")
+//                .address("789 Beach Blvd, Playa Del Carmen")
+//                .build());
+//        organizerList.add(Organizer.builder()
+//                .id(4L)
+//                .organization("Woof Town Animal Shelter")
+//                .address("101 Dog Park Lane, Woof Town")
+//                .build());
+//        organizerList.add(Organizer.builder()
+//                .id(5L)
+//                .organization("Tin City Food Bank")
+//                .address("202 Charity Rd, Tin City")
+//                .build());
+//        organizerList.add(Organizer.builder()
+//                .id(6L)
+//                .organization("Highway Clean Initiative")
+//                .address("303 Highway 50, Clean City")
+//                .build());
+//        organizerList.add(Organizer.builder()
+//                .id(7L)
+//                .organization("Cannabis Education Center")
+//                .address("404 Green Street, sansainoi, CNX")
+//                .build());
+//    }
 
     @Override
     public Integer getOrganizerSize() {
