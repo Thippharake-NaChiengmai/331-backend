@@ -83,5 +83,5 @@ curl http://localhost:8080/event
 - ✅ 3-layer architecture demonstrating Spring Boot best practices
 
 ## New Lab09 Checkpoint1.0
-![lab9-new diagram](https://github.com/user-attachments/assets/a4df6038-1b64-43db-ba73-4b4325b96b92)
+![New-lab09 diagram](https://github.com/user-attachments/assets/bf8cea04-9525-418f-8f20-7fa7356ee3fc)
 
