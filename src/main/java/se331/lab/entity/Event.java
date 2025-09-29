@@ -22,8 +22,11 @@ public class Event {
     String date;
     String time;
     Boolean petAllowed;
-    String organizer;
-    @ElementCollection
-    List<String> images;
+    @ManyToOne
+    Organizer organizer;
+    @ManyToMany(mappedBy = "eventHistory")
+    List<Participants> participants;
+//    @ElementCollection
+//    List<String> images;
 }
 

@@ -10,14 +10,15 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Organizer {
+public class Participants {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Exclude
     Long id;
     String name;
-    @ManyToMany(mappedBy = "organizer")
-    List<Event> ownEvents;
-//    @ElementCollection
-//    List<String> images;
+    String TelNo;
+    @ManyToMany
+    List<Event> eventHistory;
+
+
 }
