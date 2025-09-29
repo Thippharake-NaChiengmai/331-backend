@@ -1,86 +1,36 @@
 package se331.lab.dao;
 
-import org.springframework.context.annotation.Profile;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import jakarta.annotation.PostConstruct;
+import org.springframework.data.domain.Pageable;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 import se331.lab.entity.Organizer;
-
-import java.util.ArrayList;
-import java.util.List;
+import se331.lab.repository.OrganizerRepository;
 
 @Repository
+@RequiredArgsConstructor
 @Profile("manual")
 public class OrganizerDaoImpl implements OrganizerDao {
-    List<Organizer> organizerList;
-
-//    @PostConstruct
-//    public void init() {
-//        organizerList = new ArrayList<>();
-//        organizerList.add(Organizer.builder()
-//                .id(1L)
-//                .organization("Kat Laydee Foundation")
-//                .address("123 Cat Street, Meow Town")
-//                .build());
-//        organizerList.add(Organizer.builder()
-//                .id(2L)
-//                .organization("Flora City Gardens")
-//                .address("456 Garden Ave, Flora City")
-//                .build());
-//        organizerList.add(Organizer.builder()
-//                .id(3L)
-//                .organization("Ocean Conservation Group")
-//                .address("789 Beach Blvd, Playa Del Carmen")
-//                .build());
-//        organizerList.add(Organizer.builder()
-//                .id(4L)
-//                .organization("Woof Town Animal Shelter")
-//                .address("101 Dog Park Lane, Woof Town")
-//                .build());
-//        organizerList.add(Organizer.builder()
-//                .id(5L)
-//                .organization("Tin City Food Bank")
-//                .address("202 Charity Rd, Tin City")
-//                .build());
-//        organizerList.add(Organizer.builder()
-//                .id(6L)
-//                .organization("Highway Clean Initiative")
-//                .address("303 Highway 50, Clean City")
-//                .build());
-//        organizerList.add(Organizer.builder()
-//                .id(7L)
-//                .organization("Cannabis Education Center")
-//                .address("404 Green Street, sansainoi, CNX")
-//                .build());
-//    }
+    final OrganizerRepository organizerRepository;
 
     @Override
-    public Integer getOrganizerSize() {
-        return organizerList.size();
+    public Page<Organizer> getOrganizer(Pageable pageable) {
+        return organizerRepository.findAll(pageable);
     }
 
     @Override
-    public Page<Organizer> getOrganizers(Integer pageSize, Integer page) {
-        pageSize = pageSize == null ? organizerList.size() : pageSize;
-        page = page == null ? 1 : page;
-        int firstIndex = (page - 1) * pageSize;
-        return new PageImpl<Organizer>(organizerList.subList(firstIndex, firstIndex + pageSize),
-                PageRequest.of(page, pageSize),organizerList.size());
+    public Integer getOrganizerSize() {
+        return (int) organizerRepository.count();
     }
 
     @Override
     public Organizer getOrganizer(Long id) {
-        return organizerList.stream()
-                .filter(organizer -> organizer.getId().equals(Long.valueOf(id)))
-                .findFirst()
-                .orElse(null);
+        return organizerRepository.findById(id).orElse(null);
     }
 
     @Override
     public Organizer save(Organizer organizer) {
-        organizerList.add(organizer);
-        return organizer;
+        return organizerRepository.save(organizer);
     }
 }

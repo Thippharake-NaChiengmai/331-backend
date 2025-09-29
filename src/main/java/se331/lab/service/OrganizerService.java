@@ -3,9 +3,12 @@ package se331.lab.service;
 import se331.lab.entity.Organizer;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 public interface OrganizerService {
     Integer getOrganizerSize();
-    Page<Organizer> getOrganizers(Integer pageSize, Integer page);
-    Organizer getOrganizer(Long id);
+    List<Organizer> getAllOrganizer();
+    Page<Organizer> getOrganizer(Integer page, Integer pageSize);
+    Organizer getOrganizerId(Long id);
     Organizer save(Organizer organizer);
 }

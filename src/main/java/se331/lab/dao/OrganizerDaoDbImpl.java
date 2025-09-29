@@ -1,10 +1,9 @@
 package se331.lab.dao;
 
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.context.annotation.Profile;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 import se331.lab.entity.Organizer;
 import se331.lab.repository.OrganizerRepository;
@@ -21,8 +20,8 @@ public class OrganizerDaoDbImpl implements OrganizerDao {
     }
 
     @Override
-    public Page<Organizer> getOrganizers(Integer pageSize, Integer page) {
-        return organizerRepository.findAll(PageRequest.of(page - 1, pageSize));
+    public Page<Organizer> getOrganizer(Pageable pageable) {
+        return organizerRepository.findAll(pageable);
     }
 
     @Override

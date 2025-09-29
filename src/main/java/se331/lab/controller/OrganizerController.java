@@ -17,17 +17,13 @@ public class OrganizerController {
     final OrganizerService organizerService;
 
     @GetMapping("organizers")
-    public ResponseEntity<?> getOrganizerLists(@RequestParam(value = "_limit", required = false,defaultValue = "10") Integer perPage,
-                                               @RequestParam(value = "_page", required = false,defaultValue = "1") Integer page) {
-        Page<Organizer> pageOutput = organizerService.getOrganizers(perPage, page);
-        HttpHeaders responseHeader = new HttpHeaders();
-        responseHeader.set("x-total-count", String.valueOf(pageOutput.getTotalElements()));
-        return new ResponseEntity<>(pageOutput.getContent(), responseHeader, HttpStatus.OK);
+    public ResponseEntity<?> getOrganizerLists() {
+        return ResponseEntity.ok(organizerService.getAllOrganizer());
     }
 
     @GetMapping("organizers/{id}")
     public ResponseEntity<?> getOrganizer(@PathVariable("id") Long id) {
-        Organizer output = organizerService.getOrganizer(id);
+        Organizer output = organizerService.getOrganizerId(id);
         if (output != null) {
             return ResponseEntity.ok(output);
         } else {
