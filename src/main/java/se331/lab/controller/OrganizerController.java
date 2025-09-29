@@ -17,7 +17,7 @@ public class OrganizerController {
     final OrganizerService organizerService;
 
     @GetMapping("organizers")
-    public ResponseEntity<?> getOrganizerLists() {
+    public ResponseEntity<?> getOrganizers() {
         return ResponseEntity.ok(organizerService.getAllOrganizer());
     }
 

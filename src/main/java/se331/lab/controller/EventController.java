@@ -21,7 +21,7 @@ public class EventController {
     private final EventService eventService;
 
     @GetMapping("events")
-    public ResponseEntity<?> getEventLists(
+    public ResponseEntity<?> getEvents(
             @RequestParam(value = "_limit", required = false, defaultValue = "10") Integer pageSize,
             @RequestParam(value = "_page", required = false, defaultValue = "1") Integer page,
             @RequestParam(value = "title", required = false) String title) {
