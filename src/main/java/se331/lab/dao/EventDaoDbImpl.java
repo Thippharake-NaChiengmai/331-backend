@@ -3,17 +3,16 @@ package se331.lab.dao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-import org.springframework.data.domain.*;
 import se331.lab.entity.Event;
 import se331.lab.repository.EventRepository;
 
 @Repository
 @RequiredArgsConstructor
 @Profile("db")
-public class EventDaoDbImpl implements EventDao{
-    final EventRepository eventRepository;
+public class EventDaoDbImpl implements EventDao {
+    private final EventRepository eventRepository;
 
     @Override
     public Integer getEventSize() {
@@ -21,8 +20,13 @@ public class EventDaoDbImpl implements EventDao{
     }
 
     @Override
-    public Page<Event> getEvents(Integer pageSize, Integer page) {
-        return eventRepository.findAll(PageRequest.of(page -1, pageSize));
+    public Page<Event> getEvents(Pageable pageable) {
+        return eventRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Event> getEvents(String title, Pageable pageable) {
+        return eventRepository.findByTitleContainingIgnoreCase(title, pageable);
     }
 
     @Override
@@ -33,11 +37,5 @@ public class EventDaoDbImpl implements EventDao{
     @Override
     public Event save(Event event) {
         return eventRepository.save(event);
-    }
-
-    @Override
-    public Page<Event> getEvents(String query, Pageable page) {
-        return eventRepository.findByTitleContainingIgnoreCaseOrDescriptionContainingIgnoreCaseOrOrganizer_NameContainingIgnoreCase(
-                query, query, query, page);
     }
 }

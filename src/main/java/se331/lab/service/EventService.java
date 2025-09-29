@@ -5,8 +5,8 @@ import se331.lab.entity.Event;
 
 public interface EventService {
     Integer getEventSize();
-    Page<Event> getEvents(Integer pageSize, Integer page);
-    Event getEvent(Long id);
+    Page<Event> getAllEvents(Pageable pageable);
+    Page<Event> getEvents(String title, Pageable pageable);
+    Event getEventId(Long id);
     Event save(Event event);
-    Page<Event> getEvents(String title, Pageable page);
 }
