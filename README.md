@@ -81,3 +81,7 @@ curl http://localhost:8080/event
 - ✅ CORS enabled for frontend integration (`localhost:5173`)
 - ✅ RESTful API design with proper HTTP status codes
 - ✅ 3-layer architecture demonstrating Spring Boot best practices
+
+## New Lab09 Checkpoint1.0
+![lab9-new diagram](https://github.com/user-attachments/assets/a4df6038-1b64-43db-ba73-4b4325b96b92)
+
