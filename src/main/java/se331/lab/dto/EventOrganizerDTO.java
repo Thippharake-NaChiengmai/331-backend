@@ -10,6 +10,4 @@ import lombok.*;
 public class EventOrganizerDTO {
     Long id;
     String name;
-    //@ElementCollection
-    //List<String> images;
 }
