@@ -10,6 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import se331.lab.entity.Organizer;
 import se331.lab.service.OrganizerService;
+import se331.lab.util.LabMapper;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,14 +19,14 @@ public class OrganizerController {
 
     @GetMapping("organizers")
     public ResponseEntity<?> getOrganizers() {
-        return ResponseEntity.ok(organizerService.getAllOrganizer());
+        return ResponseEntity.ok(LabMapper.INSTANCE.getOrganizerDTO(organizerService.getAllOrganizer()));
     }
 
     @GetMapping("organizers/{id}")
     public ResponseEntity<?> getOrganizer(@PathVariable("id") Long id) {
         Organizer output = organizerService.getOrganizerId(id);
         if (output != null) {
-            return ResponseEntity.ok(output);
+            return ResponseEntity.ok(LabMapper.INSTANCE.getOrganizerDTO(output));
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     "The given id is not found");
@@ -35,6 +36,6 @@ public class OrganizerController {
     @PostMapping("/organizers")
     public ResponseEntity<?> addOrganizer(@RequestBody Organizer organizer) {
         Organizer output = organizerService.save(organizer);
-        return ResponseEntity.ok(output);
+        return ResponseEntity.ok(LabMapper.INSTANCE.getOrganizerDTO(output));
     }
 }
