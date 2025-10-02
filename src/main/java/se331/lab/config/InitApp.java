@@ -41,31 +41,31 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
             
             participant1 = participantRepository.save(Participants.builder()
                     .name("John Doe")
-                    .TelNo("0812345678")
+                    .telNo("0812345678")
                     .eventHistory(new java.util.ArrayList<>())
                     .build());
             
             participant2 = participantRepository.save(Participants.builder()
                     .name("Jane Smith")
-                    .TelNo("0823456789")
+                    .telNo("0823456789")
                     .eventHistory(new java.util.ArrayList<>())
                     .build());
             
             participant3 = participantRepository.save(Participants.builder()
                     .name("Bob Johnson")
-                    .TelNo("0834567890")
+                    .telNo("0834567890")
                     .eventHistory(new java.util.ArrayList<>())
                     .build());
             
             participant4 = participantRepository.save(Participants.builder()
                     .name("Alice Brown")
-                    .TelNo("0845678901")
+                    .telNo("0845678901")
                     .eventHistory(new java.util.ArrayList<>())
                     .build());
             
             participant5 = participantRepository.save(Participants.builder()
                     .name("Charlie Wilson")
-                    .TelNo("0856789012")
+                    .telNo("0856789012")
                     .eventHistory(new java.util.ArrayList<>())
                     .build());
 

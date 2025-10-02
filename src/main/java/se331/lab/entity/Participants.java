@@ -16,7 +16,7 @@ public class Participants {
     @EqualsAndHashCode.Exclude
     Long id;
     String name;
-    String TelNo;
+    String telNo;
     @ManyToMany
     List<Event> eventHistory;
 
