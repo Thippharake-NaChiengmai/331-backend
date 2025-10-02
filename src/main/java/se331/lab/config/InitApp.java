@@ -9,15 +9,19 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import se331.lab.entity.Event;
 import se331.lab.entity.Organizer;
+import se331.lab.entity.Participants;
+
+import java.util.List;
 import se331.lab.repository.EventRepository;
 import se331.lab.repository.OrganizerRepository;
-
+import se331.lab.repository.ParticipantRepository;
 @Component
 @RequiredArgsConstructor
 public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         @Autowired
-        EventRepository eventRepository;
-        final OrganizerRepository organizerRepository;
+    EventRepository eventRepository;
+    final OrganizerRepository organizerRepository;
+    final ParticipantRepository participantRepository;
 
         @Override
          @Transactional
@@ -32,6 +36,39 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                     .name("ChaingMai").build());
             org4 = organizerRepository.save(Organizer.builder()
                     .name("LIC Building, CAMT").build());
+
+            Participants participant1, participant2, participant3, participant4, participant5;
+            
+            participant1 = participantRepository.save(Participants.builder()
+                    .name("John Doe")
+                    .TelNo("0812345678")
+                    .eventHistory(new java.util.ArrayList<>())
+                    .build());
+            
+            participant2 = participantRepository.save(Participants.builder()
+                    .name("Jane Smith")
+                    .TelNo("0823456789")
+                    .eventHistory(new java.util.ArrayList<>())
+                    .build());
+            
+            participant3 = participantRepository.save(Participants.builder()
+                    .name("Bob Johnson")
+                    .TelNo("0834567890")
+                    .eventHistory(new java.util.ArrayList<>())
+                    .build());
+            
+            participant4 = participantRepository.save(Participants.builder()
+                    .name("Alice Brown")
+                    .TelNo("0845678901")
+                    .eventHistory(new java.util.ArrayList<>())
+                    .build());
+            
+            participant5 = participantRepository.save(Participants.builder()
+                    .name("Charlie Wilson")
+                    .TelNo("0856789012")
+                    .eventHistory(new java.util.ArrayList<>())
+                    .build());
+
             Event tempEvent;
 
             tempEvent = eventRepository.save(Event.builder()
@@ -44,6 +81,10 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                     .petAllowed(false)
                     .build());
             tempEvent.setOrganizer(org1);
+            tempEvent.setParticipants(List.of(participant1, participant2, participant3));
+            participant1.getEventHistory().add(tempEvent);
+            participant2.getEventHistory().add(tempEvent);
+            participant3.getEventHistory().add(tempEvent);
             org1.getOwnEvents().add(tempEvent);
 
             tempEvent = eventRepository.save(Event.builder()
@@ -56,6 +97,10 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                     .petAllowed(false)
                     .build());
             tempEvent.setOrganizer(org1);
+            tempEvent.setParticipants(List.of(participant2, participant3, participant4));
+            participant2.getEventHistory().add(tempEvent);
+            participant3.getEventHistory().add(tempEvent);
+            participant4.getEventHistory().add(tempEvent);
             org1.getOwnEvents().add(tempEvent);
 
             tempEvent = eventRepository.save(Event.builder()
@@ -68,6 +113,10 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                     .petAllowed(false)
                     .build());
             tempEvent.setOrganizer(org2);
+            tempEvent.setParticipants(List.of(participant3, participant4, participant5 ));
+            participant3.getEventHistory().add(tempEvent);
+            participant4.getEventHistory().add(tempEvent);
+            participant5.getEventHistory().add(tempEvent);
             org2.getOwnEvents().add(tempEvent);
 
             tempEvent = eventRepository.save(Event.builder()
@@ -80,6 +129,10 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                     .petAllowed(true)
                     .build());
             tempEvent.setOrganizer(org3);
+            tempEvent.setParticipants(List.of(participant1, participant3, participant5));
+            participant1.getEventHistory().add(tempEvent);
+            participant3.getEventHistory().add(tempEvent);
+            participant4.getEventHistory().add(tempEvent);
             org3.getOwnEvents().add(tempEvent);
 
             tempEvent = eventRepository.save(Event.builder()
@@ -92,7 +145,11 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                     .petAllowed(true)
                     .build());
             tempEvent.setOrganizer(org4);
+            tempEvent.setParticipants(List.of(participant2, participant4, participant1));
+            participant2.getEventHistory().add(tempEvent);
+            participant4.getEventHistory().add(tempEvent);
+            participant1.getEventHistory().add(tempEvent);
             org4.getOwnEvents().add(tempEvent);
-
+        
         }
 }
