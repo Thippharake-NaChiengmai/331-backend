@@ -1,3 +1,11 @@
+application:
+  security:
+    jwt:
+      secret-key: 1ebe20145fc1e3e417d6dac67f7c1a750ed041d1c9561ef68b67c00ac14b4b4e9826b95fd7a8181a81746938d568280f6f5a49e8b4846c8aa6e361fe2c1e069b
+      expiration: 86400000 # 86400000 # a day
+      refresh-token:
+        expiration: 604800000 # 7 days
+
 spring:
   Profiles:
     active:
