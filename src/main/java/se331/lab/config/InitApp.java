@@ -132,7 +132,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
             tempEvent.setParticipants(List.of(participant1, participant3, participant5));
             participant1.getEventHistory().add(tempEvent);
             participant3.getEventHistory().add(tempEvent);
-            participant4.getEventHistory().add(tempEvent);
+            participant5.getEventHistory().add(tempEvent);
             org3.getOwnEvents().add(tempEvent);
 
             tempEvent = eventRepository.save(Event.builder()
