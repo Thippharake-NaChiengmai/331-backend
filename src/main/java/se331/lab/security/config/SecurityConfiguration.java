@@ -43,6 +43,10 @@ public class SecurityConfiguration {
             authorize.requestMatchers("/api/v1/auth/**").permitAll();
             authorize.requestMatchers(HttpMethod.GET, "/events").permitAll();
             authorize.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
+
+            authorize.requestMatchers(HttpMethod.POST, "/events").hasAnyRole("ADMIN");
+            authorize.requestMatchers(HttpMethod.POST, "/events/*/participants").hasAnyRole("ADMIN");
+            authorize.requestMatchers(HttpMethod.DELETE, "/events/*/participants/*").hasAnyRole("ADMIN");
             authorize.anyRequest().authenticated();
         })
         .sessionManagement((session) ->{
