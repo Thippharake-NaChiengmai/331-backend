@@ -28,25 +28,21 @@ public class SecurityConfiguration {
       headers.frameOptions((frameOptions) -> frameOptions.disable());
     });
     http
-            .csrf((crsf) -> crsf.disable())
-            .authorizeHttpRequests((authorize) -> {
-
-              authorize.anyRequest().authenticated();
-            })
-
-            .sessionManagement((session) ->{
-              session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-            })
-
-
-            .authenticationProvider(authenticationProvider)
-            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-            .logout((logout) -> {
-              logout.logoutUrl("/api/v1/auth/logout");
-              logout.addLogoutHandler(logoutHandler);
-              logout.logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext());
-            })
-    ;
+        .csrf((csrf) -> csrf.disable())
+        .authorizeHttpRequests((authorize) -> {
+            authorize.requestMatchers("/api/v1/auth/**").permitAll();
+            authorize.anyRequest().authenticated();
+        })
+        .sessionManagement((session) ->{
+            session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        })
+        .authenticationProvider(authenticationProvider)
+        .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+        .logout((logout) -> {
+            logout.logoutUrl("/api/v1/auth/logout");
+            logout.addLogoutHandler(logoutHandler);
+            logout.logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext());
+        });
 
     return http.build();
 
