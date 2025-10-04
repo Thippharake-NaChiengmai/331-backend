@@ -2,6 +2,7 @@ package se331.lab.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import se331.lab.security.user.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,8 @@ public class Organizer {
     @OneToMany(mappedBy = "organizer")
     @Builder.Default
     List<Event> ownEvents  = new ArrayList<>();
+    @OneToOne
+    User user;
     @ElementCollection
     List<String> images;
 

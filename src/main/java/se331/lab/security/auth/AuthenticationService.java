@@ -18,6 +18,7 @@ import se331.lab.security.token.TokenType;
 import se331.lab.security.user.Role;
 import se331.lab.security.user.User;
 import se331.lab.security.user.UserRepository;
+import se331.lab.util.LabMapper;
 
 import java.io.IOException;
 import java.util.List;
@@ -113,6 +114,7 @@ public class AuthenticationService {
         AuthenticationResponse authResponse = AuthenticationResponse.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
+                .user(LabMapper.INSTANCE.getOrganizerDTO(user.getOrganizer()))
                 .build();
         new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
       }
