@@ -35,10 +35,12 @@ public class AuthenticationService {
 
   public AuthenticationResponse register(RegisterRequest request) {
     User user = User.builder()
+      .username(request.getUsername())
             .firstname(request.getFirstname())
             .lastname(request.getLastname())
             .email(request.getEmail())
             .password(passwordEncoder.encode(request.getPassword()))
+      .enabled(true)
             .roles(new ArrayList<>())
             .build();
 

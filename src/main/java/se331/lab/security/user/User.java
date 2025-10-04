@@ -24,26 +24,35 @@ import java.util.stream.Collectors;
 @Table(name = "_user")
 public class User implements UserDetails {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
+    
+    @Column(unique = true, nullable = false)
     String username;
+    
+    @Column(nullable = false)
     String password;
+    
     String firstname;
     String lastname;
     String email;
+    
+    @Column(nullable = false)
     boolean enabled;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
+    @Column(name = "role")
     @Builder.Default
     private List<Role> roles = new ArrayList<>();
     
     @OneToOne(mappedBy = "user")
     Organizer organizer;
 
-    @OneToMany(mappedBy = "user")
-    private List<Token> tokens;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @Builder.Default
+    private List<Token> tokens = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
