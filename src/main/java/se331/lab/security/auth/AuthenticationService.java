@@ -114,7 +114,7 @@ public class AuthenticationService {
         AuthenticationResponse authResponse = AuthenticationResponse.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
-                .user(LabMapper.INSTANCE.getOrganizerDTO(user.getOrganizer()))
+                .user(LabMapper.INSTANCE.getOrganizerAuthDTO(user.getOrganizer()))
                 .build();
         new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
       }
