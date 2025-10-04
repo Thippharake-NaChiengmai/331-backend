@@ -18,10 +18,13 @@ public class Organizer {
     @EqualsAndHashCode.Exclude
     Long id;
     String name;
+    
     @OneToMany(mappedBy = "organizer")
     @Builder.Default
-    List<Event> ownEvents  = new ArrayList<>();
+    List<Event> ownEvents = new ArrayList<>();
+    
     @OneToOne
+    @JoinColumn(name = "user_id")
     User user;
     @ElementCollection
     List<String> images;

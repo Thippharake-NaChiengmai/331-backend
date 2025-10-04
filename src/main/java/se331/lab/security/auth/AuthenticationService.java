@@ -21,6 +21,7 @@ import se331.lab.security.user.UserRepository;
 import se331.lab.util.LabMapper;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -38,8 +39,11 @@ public class AuthenticationService {
             .lastname(request.getLastname())
             .email(request.getEmail())
             .password(passwordEncoder.encode(request.getPassword()))
-            .roles(List.of(Role.ROLE_USER))
+            .roles(new ArrayList<>())
             .build();
+
+    user.getRoles().add(Role.ROLE_USER);
+
     var savedUser = repository.save(user);
     var jwtToken = jwtService.generateToken(user);
     var refreshToken = jwtService.generateRefreshToken(user);

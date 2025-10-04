@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,63 +23,62 @@ import java.util.stream.Collectors;
 @Entity
 @Table(name = "_user")
 public class User implements UserDetails {
+    @Id
+    @GeneratedValue
+    Integer id;
+    String username;
+    String password;
+    String firstname;
+    String lastname;
+    String email;
+    boolean enabled;
 
-  @Id
-  @GeneratedValue
-  private Integer id;
-  private String parentId;
-  private String firstname;
-  private String lastname;
-  @Column(unique = true)
-  private String username;
-  private String email;
-  private String password;
-  private Boolean enabled;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @Enumerated(EnumType.STRING)
+    @Builder.Default
+    private List<Role> roles = new ArrayList<>();
+    
+    @OneToOne(mappedBy = "user")
+    Organizer organizer;
 
-  @Enumerated(EnumType.STRING)
-  @ElementCollection
-  @Builder.Default
-  @LazyCollection(LazyCollectionOption.FALSE)
-  private List<Role> roles = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    private List<Token> tokens;
 
-  @OneToOne(mappedBy = "user")
-  Organizer organizer;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles.stream()
+                .map(role -> new SimpleGrantedAuthority(role.name()))
+                .collect(Collectors.toList());
+    }
 
-  @OneToMany(mappedBy = "user")
-  private List<Token> tokens;
+    @Override
+    public String getPassword() {
+        return password;
+    }
 
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return roles.stream().map(role -> new SimpleGrantedAuthority(role.name())).collect(Collectors.toList());
-  }
+    @Override
+    public String getUsername() {
+        return username;
+    }
 
-  @Override
-  public String getPassword() {
-    return password;
-  }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
-  @Override
-  public String getUsername() {
-    return username;
-  }
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
 
-  @Override
-  public boolean isAccountNonExpired() {
-    return true;
-  }
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
 
-  @Override
-  public boolean isAccountNonLocked() {
-    return true;
-  }
-
-  @Override
-  public boolean isCredentialsNonExpired() {
-    return true;
-  }
-
-  @Override
-  public boolean isEnabled() {
-    return enabled;
-  }
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
 }
