@@ -44,9 +44,13 @@ public class SecurityConfiguration {
             authorize.requestMatchers(HttpMethod.GET, "/events").permitAll();
             authorize.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
 
+            authorize.requestMatchers(HttpMethod.POST, "/uploadImage").hasAnyRole("ADMIN");
+            authorize.requestMatchers(HttpMethod.POST, "/uploadFile").hasAnyRole("ADMIN");
+
             authorize.requestMatchers(HttpMethod.POST, "/events").hasAnyRole("ADMIN");
             authorize.requestMatchers(HttpMethod.POST, "/events/*/participants").hasAnyRole("ADMIN");
             authorize.requestMatchers(HttpMethod.DELETE, "/events/*/participants/*").hasAnyRole("ADMIN");
+
             authorize.anyRequest().authenticated();
         })
         .sessionManagement((session) ->{
