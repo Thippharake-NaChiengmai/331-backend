@@ -53,6 +53,7 @@ public class AuthenticationService {
     return AuthenticationResponse.builder()
         .accessToken(jwtToken)
             .refreshToken(refreshToken)
+            .user(LabMapper.INSTANCE.getOrganizerAuthDTO(savedUser.getOrganizer()))
         .build();
   }
 
@@ -73,6 +74,7 @@ public class AuthenticationService {
     return AuthenticationResponse.builder()
             .accessToken(jwtToken)
             .refreshToken(refreshToken)
+            .user(LabMapper.INSTANCE.getOrganizerAuthDTO(user.getOrganizer()))
             .build();
   }
 
